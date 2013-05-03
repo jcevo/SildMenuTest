@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/recommend_menu_child_main"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/recommend_menu_top_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0"
+        android:orientation="vertical" />
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom" >
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffc9cccd"
+            android:gravity="center_vertical"
+            android:paddingTop="1dip" >
+
+            <RelativeLayout
+                android:id="@+id/recommend_menu_child_favourite"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginRight="1dip"
+                android:layout_weight="1"
+                android:background="@drawable/recommend_menu_item_background"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/recommend_menu_child_favourite_icon"
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="3dip"
+                    android:src="@drawable/menu_0" />
+
+                <TextView
+                    android:id="@+id/recommend_menu_child_favourite_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/recommend_menu_child_favourite_icon"
+                    android:gravity="center"
+                    android:text="@string/menu_0"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/recommend_menu_child_select_feedback"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginRight="1dip"
+                android:layout_weight="1"
+                android:background="@drawable/recommend_menu_item_background"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/recommend_menu_child_select_feedback_icon"
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="3dip"
+                    android:src="@drawable/menu_1" />
+
+                <TextView
+                    android:id="@+id/recommend_menu_child_select_feedback_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/recommend_menu_child_select_feedback_icon"
+                    android:gravity="center"
+                    android:text="@string/menu_1"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/recommend_menu_child_about"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginRight="1dip"
+                android:layout_weight="1"
+                android:background="@drawable/recommend_menu_item_background"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/recommend_menu_child_about_icon"
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="3dip"
+                    android:src="@drawable/menu_2" />
+
+                <TextView
+                    android:id="@+id/recommend_menu_child_about_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/recommend_menu_child_about_icon"
+                    android:gravity="center"
+                    android:text="@string/menu_2"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/recommend_menu_child_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginRight="1dip"
+                android:layout_weight="1"
+                android:background="@drawable/recommend_menu_item_background"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/recommend_menu_child_setting_icon"
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="3dip"
+                    android:src="@drawable/menu_3" />
+
+                <TextView
+                    android:id="@+id/recommend_menu_child_setting_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/recommend_menu_child_setting_icon"
+                    android:gravity="center"
+                    android:text="@string/menu_3"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

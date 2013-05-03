@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="com.umeng.demo"
+      android:versionCode="1"
+      android:versionName="1.0">
+    <application android:icon="@drawable/icon" android:label="@string/app_name">
+        <activity android:name=".DemoActivity"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+    </activity>
+    
+    <!-- add feedback Activity -->   
+  	<activity android:name="com.feedback.ui.SendFeedback" android:windowSoftInputMode="adjustResize" />
+	<activity android:name="com.feedback.ui.FeedbackConversations" />
+	<activity android:name="com.feedback.ui.FeedbackConversation" android:configChanges="keyboard" />
+       
+     <!-- basic anlytic：change the value below to your appkey4d5a0891112cf757e20781d3 ，never change name-->
+     <meta-data android:value="4d5a0891112cf757e20781d3" android:name="UMENG_APPKEY">   </meta-data>  
+     <!-- channel :values is your channel name 4eb7a8135270152e22000015-->
+     <meta-data android:value="androidmarekt" android:name="UMENG_CHANNEL"/>
+        
+         
+    </application>
+    <uses-sdk android:minSdkVersion="4" />
+    <!-- add permissions -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission  android:name="android.permission.INTERNET"/>
+    <uses-permission  android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission  android:name="android.permission.READ_LOGS"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <!-- write sdcard for storing apk -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+</manifest> 

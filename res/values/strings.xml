@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World!</string>
+    <string name="app_name">Alvin_common</string>
+
+    <!-- 菜单项文案 -->
+    <string name="menu_0">收藏夹</string>
+    <string name="menu_1">意见反馈</string>
+    <string name="menu_2">关于我们</string>
+    <string name="menu_3">退出应用</string>
+    <string name="user_info_goto_recommend">您的信息有助于我们为您提供更精准的应用程序,确认放弃吗?</string>
+    <string name="user_info_goto_tips">提示</string>
+    <string name="hit_network_failure">对不起，您的网络不太顺畅，请设置网络或稍候再试</string>
+
+</resources>

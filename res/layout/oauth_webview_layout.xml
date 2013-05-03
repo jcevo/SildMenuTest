@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+  <LinearLayout
+	  android:orientation="vertical"
+	  android:layout_width="fill_parent"
+	  android:layout_height="fill_parent">
+	  <RelativeLayout android:id="@+id/title_bar"
+		  xmlns:android="http://schemas.android.com/apk/res/android"
+		  android:layout_width="fill_parent"
+		  android:layout_height="wrap_content"
+		  android:paddingLeft="5dip"
+		  android:paddingRight="5dip"
+		  android:background="@drawable/navbar_background">
+	    <Button android:id="@+id/title_bar_b1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:layout_centerVertical="true"
+	        android:textColor="#FFF"
+	        android:background="@null"
+	        android:textSize="18dip" />
+	    <TextView android:id="@+id/title_bar_text"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_centerHorizontal="true"
+	        android:layout_centerVertical="true"
+	        android:textSize="20sp"
+	        android:textColor="#FFF" />
+	    <Button android:id="@+id/title_bar_b2"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentRight="true"
+	        android:layout_centerVertical="true"
+	        android:textColor="#FFF"
+	        android:background="@drawable/navbar_button_red_default"
+	        android:textSize="18dip"
+	        android:visibility="invisible" />
+      </RelativeLayout>
+	  <WebView android:id="@+id/oauth_webview"
+	        android:scrollbarStyle="insideOverlay"
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent" />
+  </LinearLayout>
+  <ProgressBar android:id="@+id/share_round_progress"
+    android:layout_width="@dimen/progress_bar_round_size"
+    android:layout_height="@dimen/progress_bar_round_size"
+    android:indeterminateDrawable="@anim/progress_bar_1"
+    android:visibility="visible"
+    android:layout_gravity="center"/>
+</FrameLayout>

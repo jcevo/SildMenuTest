@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    >
+     <Button android:id="@+id/online_config" android:text="在线参数"
+            android:layout_height="wrap_content" android:layout_width="fill_parent"/>
+    <Button android:id="@+id/feedback" android:text="反馈"
+            android:layout_height="wrap_content" android:layout_width="fill_parent"/>
+    <Button android:id="@+id/on_error" android:text="除零crash"
+            android:layout_height="wrap_content" android:layout_width="fill_parent"/>      
+    <Button android:id="@+id/self_event" android:text="自定义简单事件"
+    		android:layout_height="wrap_content" android:layout_width="fill_parent" />
+     <Button android:id="@+id/self_multitag_event0" android:text="自定义多标签事件0"
+    		android:layout_height="wrap_content" android:layout_width="fill_parent" />
+    <Button android:id="@+id/self_multitag_event1" android:text="自定义多标签事件1"
+    		android:layout_height="wrap_content" android:layout_width="fill_parent" />
+    <Button android:id="@+id/self_multitag_event2" android:text="自定义多标签事件2"
+    		android:layout_height="wrap_content" android:layout_width="fill_parent" />
+
+</LinearLayout>

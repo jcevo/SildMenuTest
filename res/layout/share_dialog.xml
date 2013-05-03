@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="18.0dip"
+    android:background="@null"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/exit_dialog_div"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="18.0dip"
+        android:background="@drawable/dialog_background"
+        android:orientation="vertical"
+        android:padding="10.0dip" >
+
+        <!--
+        <ImageView
+            android:id="@+id/exit_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10.0dip"
+            android:layout_marginLeft="10.0dip"
+            android:layout_marginRight="10.0dip"
+            android:layout_marginTop="5.0dip"
+            android:src="@drawable/ic_notice"
+            android:visibility="gone"
+             />
+
+        <TextView
+            android:id="@+id/exit_notice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/exit_icon"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dip"
+            android:gravity="center"
+            android:text="靠"
+            android:textColor="@android:color/black"
+            android:textSize="18dip"
+            android:visibility="gone"
+             />
+ <ImageView
+            android:id="@+id/exit_divider"
+            android:layout_width="fill_parent"
+            android:layout_height="1.0px"
+            android:layout_below="@+id/exit_notice"
+            android:src="@drawable/dialog_divider_horizontal" />
+        -->
+
+        <ListView
+            android:id="@+id/share_list"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+        </ListView>
+
+        <Button
+            android:id="@+id/exit_ok_button"
+            android:layout_width="wrap_content"
+            android:layout_height="60dip"
+            android:layout_below="@id/share_list"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="8dip"
+            android:layout_marginRight="8dip"
+            android:layout_marginTop="10.0dip"
+            android:gravity="center"
+            android:text="@android:string/ok"
+            android:textColor="@android:color/black" />
+    </RelativeLayout>
+
+    <!-- 在XML文件中靠后的元素在页面上越靠前显示，既不被遮挡 -->
+
+    <Button
+        android:id="@+id/exit_close_window"
+        android:layout_width="36.0dip"
+        android:layout_height="36.0dip"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/close_win_bg" />
+
+</RelativeLayout>
