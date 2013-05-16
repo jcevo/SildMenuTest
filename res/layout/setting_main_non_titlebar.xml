@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 设置页面没有标题栏部分的布局 -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/setting_background"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/setting_background"
+            android:orientation="vertical" >
+
+            <!-- 文章搜索 -->
+
+            <include
+                android:id="@+id/setting_article_search"
+                layout="@layout/setting_main_textview" />
+
+            <!-- 离线下载 -->
+
+            <include
+                android:id="@+id/setting_offline_download"
+                layout="@layout/setting_main_textview" />
+
+            <!-- 登录太平洋通行证 -->
+
+            <include
+                android:id="@+id/setting_login"
+                layout="@layout/setting_main_textview_transparent" />
+            <LinearLayout
+                android:id="@+id/setting_login_pcoline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin10"
+                android:layout_marginRight="@dimen/margin10"
+                android:layout_marginTop="@dimen/margin10"
+                android:background="@drawable/setting_default_press_background"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:contentDescription="@null"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="@dimen/margin10"
+                    android:src="@drawable/setting_pconline" />
+
+                <TextView
+                    style="@style/textview_white_16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/setting_login_pconline" />
+            </LinearLayout>
+
+            <!-- 分享绑定 -->
+            <include layout="@layout/setting_main_share_binding" />
+
+            <!-- 字体大小 -->
+
+            <include
+                android:id="@+id/setting_text_size"
+                layout="@layout/setting_main_textview_transparent" />
+            <include layout="@layout/setting_main_text_size"/>
+
+            <!-- 2G/3G网络加载 -->
+
+            <include
+                android:id="@+id/setting_image_size"
+                layout="@layout/setting_main_textview_transparent" />
+
+           <include layout="@layout/setting_main_network"/>
+
+           <!-- 功能开关 -->
+            <include layout="@layout/setting_main_switch" />
+
+            <!-- 定义栏目 -->
+
+            <include
+                android:id="@+id/setting_define_column"
+                layout="@layout/setting_main_textview" />
+
+            <!-- 清除缓存 -->
+
+            <include
+                android:id="@+id/setting_clean_cache"
+                layout="@layout/setting_main_textview" />
+
+            <!-- 关于我们 -->
+
+            <include
+                android:id="@+id/setting_about_us"
+                layout="@layout/setting_main_textview" />
+
+            <!-- 给个评价 -->
+            <include
+                android:id="@+id/setting_evaluate"
+                layout="@layout/setting_main_textview" />
+
+            <!-- 精品应用 -->
+            <include layout="@layout/setting_main_quality_app" />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

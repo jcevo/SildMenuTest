@@ -3,7 +3,7 @@ package com.alvin.activity.service;
 import com.alvin.api.config.Env;
 import com.alvin.common.R;
 import com.alvin.common.utils.HttpUtils;
-import com.alvin.db.DBHelper;
+import com.alvin.db.AlvinDBHelper;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -50,21 +50,21 @@ import java.util.List;
 /**
  * 用于系统更新的服务
  */
-public class UpdateService extends Service{
+public class UpdateService extends Service {
     private final int DOWNLOAD_COMPLETE = 0;
     private final int DOWNLOAD_URL_REEOR = 1;
     private final int DOWNLOAD_FAIL = 2;
     private final int CREATE_FILE_FAIL = 3;
-    
+
     private String updateNotificationTitle = null;
-    
+
     //更新文件和更新跳转
-    private File  updateFile = null;
+    private File updateFile = null;
     private PendingIntent updatePendingIntent = null;
     private int updateTotalSize = 0;
     private NotificationManager updateNotificationManager = null;
     private Notification updateNotification = null;
-    
+
     //布局资源
     private int iconID = 0;
     private int titleID = R.string.app_name;
@@ -72,59 +72,59 @@ public class UpdateService extends Service{
     private int textViewID = R.id.update_notification_progresstext;
     private int blockViewID = R.id.update_notification_progressblock;
     private int processbarViewID = R.id.update_notification_progressbar;
-    
+
     //onStartCommand状态参数
     private Intent startIntent = null;
     private int startFlags = 0;
     private int startId = 0;
     private int startCount = 0;
-    
-    private int updateApkVersionCode=0;
-    private String updateApkDownloadUrl="";
-    
-    private Handler updateHandler = new Handler(){
+
+    private int updateApkVersionCode = 0;
+    private String updateApkDownloadUrl = "";
+
+    private Handler updateHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            switch(msg.what){
+            switch (msg.what) {
                 case DOWNLOAD_COMPLETE:
                     updateNotification.contentView.setViewVisibility(blockViewID, View.GONE);
-                    
+
                     //下载完成后校验文件是否正确
-                    try{                        
+                    try {
                         PackageManager pManager = UpdateService.this.getPackageManager();
                         PackageInfo pInfo = pManager.getPackageArchiveInfo(
                                 updateFile.getPath(), PackageManager.GET_ACTIVITIES);
-                        if(pInfo==null){
+                        if (pInfo == null) {
                             updateNotification.contentView.setTextViewText(
                                     textViewID, "校验文件失败，请下次启动后重新下载");
                             updateNotificationManager.notify(iconID, updateNotification);
                             updateFile.delete();
-                            if(startCount<4){                                
-                                onStartCommand(startIntent,startFlags,startId);
+                            if (startCount < 4) {
+                                onStartCommand(startIntent, startFlags, startId);
                             }
                             stopSelf();
                             return;
                         }
-                    }catch(Exception ex){
+                    } catch (Exception ex) {
                         updateNotification.contentView.setTextViewText(
                                 textViewID, "校验文件失败，请下次启动后重新下载");
                         updateNotificationManager.notify(iconID, updateNotification);
                         updateFile.delete();
-                        if(startCount<4){                                
-                            onStartCommand(startIntent,startFlags,startId);
+                        if (startCount < 4) {
+                            onStartCommand(startIntent, startFlags, startId);
                         }
                         stopSelf();
                         return;
                     }
-                    
+
                     //files目录下文件安装需要权限，赋予777权限
-                    String cmd = "chmod 777 " +updateFile.getPath();
+                    String cmd = "chmod 777 " + updateFile.getPath();
                     try {
                         Runtime.getRuntime().exec(cmd);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    
+
                     //设置点击跳转Activity
                     Uri uri = Uri.fromFile(updateFile);
                     Intent updateCompleteIntent = new Intent(Intent.ACTION_VIEW);
@@ -133,25 +133,25 @@ public class UpdateService extends Service{
                     updatePendingIntent = PendingIntent.getActivity(
                             UpdateService.this, titleID, updateCompleteIntent,
                             PendingIntent.FLAG_UPDATE_CURRENT);
-                    
+
                     updateNotification.defaults = Notification.DEFAULT_SOUND;
                     updateNotification.contentIntent = updatePendingIntent;
                     updateNotification.contentView.setTextViewText(textViewID, "下载完成，点击安装！");
                     updateNotificationManager.notify(iconID, updateNotification);
-                    
+
                     //应用正在运行
-                    ActivityManager myAM=(ActivityManager)getApplicationContext().getSystemService(
+                    ActivityManager myAM = (ActivityManager) getApplicationContext().getSystemService(
                             Context.ACTIVITY_SERVICE);
                     List<RunningAppProcessInfo> runningApps = myAM.getRunningAppProcesses();
-                    
+
                     boolean isAppRunning = false;
-                    for(RunningAppProcessInfo r : runningApps){
-                        if(r.processName.equals(Env.client)){
+                    for (RunningAppProcessInfo r : runningApps) {
+                        if (r.processName.equals(Env.client)) {
                             isAppRunning = true;
                             break;
                         }
                     }
-                    if(isAppRunning){
+                    if (isAppRunning) {
 //                      下载完成后，跳转到用户确认升级界面
                         Intent installIntent = new Intent(
                                 UpdateService.this, UpdateService.class);
@@ -175,7 +175,7 @@ public class UpdateService extends Service{
                     updateNotificationManager.notify(iconID, updateNotification);
                     break;
                 case DOWNLOAD_FAIL:
-                     //其他错误
+                    //其他错误
                     updateNotification.setLatestEventInfo(UpdateService.this,
                             updateNotificationTitle, "下载失败，请重新下载！", updatePendingIntent);
                     updateNotificationManager.notify(iconID, updateNotification);
@@ -184,7 +184,7 @@ public class UpdateService extends Service{
             }
             stopSelf();
             super.handleMessage(msg);
-        }        
+        }
     };
 
     @Override
@@ -192,15 +192,15 @@ public class UpdateService extends Service{
         return null;
     }
 
-    
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        
+
         this.startCount++;
         this.startIntent = intent;
         this.startFlags = flags;
         this.startId = startId;
-        
+
         //接受参数
         iconID = intent.getIntExtra("iconID", 0);
 //        titleID = intent.getIntExtra("titleID", 0);
@@ -208,22 +208,22 @@ public class UpdateService extends Service{
 //        textViewID = intent.getIntExtra("textViewID", 0);
 //        blockViewID = intent.getIntExtra("blockViewID", 0);
 //        processbarViewID = intent.getIntExtra("processbarViewID", 0);
-        
+
         updateApkVersionCode = intent.getIntExtra("versionCode", 0);
         updateApkDownloadUrl = intent.getStringExtra("downloadUrl");
-        
+
         //创建文件
-        if(android.os.Environment.MEDIA_MOUNTED.equals(
-                android.os.Environment.getExternalStorageState())){
-            updateFile = new File(Env.externalFileDir,Env.client+".apk");
-        }else{
-            updateFile = new File(getFilesDir().getPath(),Env.client+".apk");
+        if (android.os.Environment.MEDIA_MOUNTED.equals(
+                android.os.Environment.getExternalStorageState())) {
+            updateFile = new File(Env.externalFileDir, Env.client + ".apk");
+        } else {
+            updateFile = new File(getFilesDir().getPath(), Env.client + ".apk");
         }
-        
+
         this.updateNotificationTitle = getResources().getString(titleID);
-        
+
         this.updateNotificationManager =
-                (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         this.updateNotification = new Notification();
 
         updateNotification.contentView =
@@ -233,10 +233,10 @@ public class UpdateService extends Service{
         updateCompletingIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         updateCompletingIntent.setClass(getApplication().getApplicationContext(),
                 UpdateService.class);
-        
+
         updatePendingIntent = PendingIntent.getActivity(UpdateService.this, titleID,
                 updateCompletingIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-                
+
         updateNotification.icon = iconID;
         updateNotification.tickerText = "开始下载";
         updateNotification.contentIntent = updatePendingIntent;
@@ -245,92 +245,93 @@ public class UpdateService extends Service{
         updateNotification.contentView.setTextViewText(textViewID, "0%");
         updateNotificationManager.cancel(iconID);
         updateNotificationManager.notify(iconID, updateNotification);
-        
+
         new Thread(new updateRunnable()).start();
-        
+
         return super.onStartCommand(intent, flags, startId);
     }
 
 
-    class updateRunnable implements Runnable{
+    class updateRunnable implements Runnable {
         Message message = updateHandler.obtainMessage();
+
         public void run() {
-            try{   
+            try {
                 message.what = DOWNLOAD_COMPLETE;
-                
-                if(!updateFile.exists()){
+
+                if (!updateFile.exists()) {
                     updateFile.createNewFile();
-                }else{
+                } else {
                     //判断SDCARD上是否已经下载了最新版本
-                    try{
+                    try {
                         PackageManager pManager = UpdateService.this.getPackageManager();
                         PackageInfo pInfo = pManager.getPackageArchiveInfo(
                                 updateFile.getPath(), PackageManager.GET_ACTIVITIES);
                         //如果已经下载，检查下载文件的版本
-                        if(pInfo != null){
-                            if(updateApkVersionCode > 0
-                                    && updateApkVersionCode == pInfo.versionCode){
+                        if (pInfo != null) {
+                            if (updateApkVersionCode > 0
+                                    && updateApkVersionCode == pInfo.versionCode) {
                                 updateHandler.sendMessage(message);
                                 return;
-                            }else{
+                            } else {
                                 //如果是老版本的，删除并准备重新下载
                                 updateFile.delete();
                                 updateFile.createNewFile();
                             }
                         }
-                    }catch(Exception ex){
+                    } catch (Exception ex) {
                         ex.printStackTrace();
                     }
                 }
-               
+
                 long size = 0;
                 //空判断服务器下载地址
-                if(updateApkDownloadUrl == null || "".equals(updateApkDownloadUrl)){
+                if (updateApkDownloadUrl == null || "".equals(updateApkDownloadUrl)) {
                     message.what = DOWNLOAD_URL_REEOR;
-                }else{
+                } else {
                     size = downloadUpdateFile(updateApkDownloadUrl, updateFile, true);
-                    if(size == 0){ 
+                    if (size == 0) {
                         message.what = DOWNLOAD_FAIL;
                     }
                 }
                 updateHandler.sendMessage(message);
-            }catch(Exception ex){
+            } catch (Exception ex) {
                 ex.printStackTrace();
                 message.what = DOWNLOAD_FAIL;
                 updateHandler.sendMessage(message);
             }
         }
-        
+
         //下载文件
         public long downloadUpdateFile(String urlStr, File dest, boolean append) throws Exception {
-            
+
             int downloadCount = 0;
             int currentSize = 0;
             long totalSize = 0;
-            
-            if(append) {
+
+            if (append) {
                 FileInputStream fis = null;
                 try {
                     fis = new FileInputStream(dest);
                     currentSize = fis.available();
-                } catch(IOException ex) {
+                } catch (IOException ex) {
                     ex.printStackTrace();
                 } finally {
-                    if(fis != null) {
+                    if (fis != null) {
                         fis.close();
                     }
                 }
             }
-            
+
             HttpURLConnection httpConnection = null;
             InputStream is = null;
             FileOutputStream fos = null;
-            
+
             try {
                 URL url = new URL(urlStr);
-                httpConnection = (HttpURLConnection)url.openConnection();
+                httpConnection = (HttpURLConnection) url.openConnection();
                 httpConnection.setRequestProperty("User-Agent", "PacificHttpClient");
-                if(currentSize > 0) {
+                if (currentSize > 0) {
                     httpConnection.setRequestProperty("RANGE", "bytes=" + currentSize + "-");
                 }
                 httpConnection.setConnectTimeout(10000);
@@ -343,26 +344,26 @@ public class UpdateService extends Service{
                 fos = new FileOutputStream(dest, append);
                 byte buffer[] = new byte[4096];
                 int readsize = 0;
-                while((readsize = is.read(buffer)) > 0){
+                while ((readsize = is.read(buffer)) > 0) {
                     fos.write(buffer, 0, readsize);
                     totalSize += readsize;
-                    if((downloadCount == 0)||(int) (totalSize*100/updateTotalSize)-8>downloadCount){ 
+                    if ((downloadCount == 0) || (int) (totalSize * 100 / updateTotalSize) - 8 > downloadCount) {
                         downloadCount += 8;
                         updateNotification.contentView.setProgressBar(
-                                processbarViewID, 100, (int)(totalSize*100/updateTotalSize), false);
+                                processbarViewID, 100, (int) (totalSize * 100 / updateTotalSize), false);
                         updateNotification.contentView.setTextViewText(
-                                textViewID, (int)(totalSize*100/updateTotalSize)+"%");
+                                textViewID, (int) (totalSize * 100 / updateTotalSize) + "%");
                         updateNotificationManager.notify(iconID, updateNotification);
                     }
                 }
-            }finally {
-                if(httpConnection != null) {
+            } finally {
+                if (httpConnection != null) {
                     httpConnection.disconnect();
                 }
-                if(is != null) {
+                if (is != null) {
                     is.close();
                 }
-                if(fos != null) {
+                if (fos != null) {
                     fos.close();
                 }
             }
@@ -377,7 +378,7 @@ public class UpdateService extends Service{
 
         try {
             String json = HttpUtils.invokeText(checkUrl);
-            if(json != null && json.trim().length() > 0) {
+            if (json != null && json.trim().length() > 0) {
                 info = new UpdateInfo();
                 JSONObject jsonObject = new JSONObject(json);
                 info.setVersionCode(jsonObject.getInt("version-code"));
@@ -386,11 +387,11 @@ public class UpdateService extends Service{
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 info.setTime(dateFormat.parse(jsonObject.getString("time")));
                 JSONArray descJson = jsonObject.getJSONArray("description");
-                if(descJson != null && descJson.length() > 0) {
+                if (descJson != null && descJson.length() > 0) {
                     StringBuffer description = new StringBuffer();
-                    for(int i=0; i<descJson.length(); i++) {
+                    for (int i = 0; i < descJson.length(); i++) {
                         description.append(descJson.getString(i));
-                        if(i < description.length()-1) {
+                        if (i < description.length() - 1) {
                             description.append("\r\n");
                         }
                     }
@@ -411,12 +412,12 @@ public class UpdateService extends Service{
             public void run() {
                 UpdateInfo info = check(checkUrl);
 
-                if(info != null) {
+                if (info != null) {
                     Date now = new Date();
 //                    System.out.println("##### now is after " + info.getTime() + " = " + now.after(info.getTime()));
-                    if(info.getVersionCode() > currentVersionCode
+                    if (info.getVersionCode() > currentVersionCode
                             && now.after(info.getTime())) {
-                        if(repeat || !isNoRemindVersion(info.getVersionCode())) {
+                        if (repeat || !isNoRemindVersion(info.getVersionCode())) {
                             Env.topActivity.runOnUiThread(new UpdateThread(Env.topActivity, info,
                                     notificationIconResId));
                         }
@@ -489,59 +490,60 @@ public class UpdateService extends Service{
         public void run() {
             AlertDialog.Builder alertBuilder = new AlertDialog.Builder(Env.topActivity);
             alertBuilder.setTitle("软件升级")
-                .setPositiveButton("更新", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        //开启下载服务
-                        Intent serviceIntent =
-                                new Intent(Env.topActivity, UpdateService.class);
-                        //参数ID参考布局文件update_notification.xml
-                        serviceIntent.putExtra("iconID", notificationIconResId);//图标
+                    .setPositiveButton("更新", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            //开启下载服务
+                            Intent serviceIntent =
+                                    new Intent(Env.topActivity, UpdateService.class);
+                            //参数ID参考布局文件update_notification.xml
+                            serviceIntent.putExtra("iconID", notificationIconResId);//图标
 //                        serviceIntent.putExtra("titleID", notificationTitle);//标题
 //                        serviceIntent.putExtra("layoutID", R.layout.update_notification);//update_notification.xml，可以修改成其他布局
 //                        serviceIntent.putExtra("textViewID", R.id.update_notification_progresstext);//显示文字
 //                        serviceIntent.putExtra("blockViewID", R.id.update_notification_progressblock);//兼容2.2一下版本进度条的bug而设立的区域布局
 //                        serviceIntent.putExtra("processbarViewID", R.id.update_notification_progressbar);//进度条
-                        serviceIntent.putExtra("downloadUrl", updateInfo.getApk());
-                        serviceIntent.putExtra("versionCode", updateInfo.getVersionCode());
-                        Env.topActivity.startService(serviceIntent);
-                    }
-                })
-                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                })
-                .setView(createUpdateDialog());
+                            serviceIntent.putExtra("downloadUrl", updateInfo.getApk());
+                            serviceIntent.putExtra("versionCode", updateInfo.getVersionCode());
+                            Env.topActivity.startService(serviceIntent);
+                        }
+                    })
+                    .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    })
+                    .setView(createUpdateDialog());
             alertBuilder.create().show();
         }
 
         /**
          * 弹出自动更新的对话框自定义布局
+         *
          * @return
          */
-        private View createUpdateDialog(){
+        private View createUpdateDialog() {
 
-            LinearLayout linearLayout=new LinearLayout(activity);
+            LinearLayout linearLayout = new LinearLayout(activity);
             linearLayout.setOrientation(LinearLayout.VERTICAL);
             linearLayout.setPadding(12, 5, 12, 0);
-            LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT,LinearLayout.LayoutParams.FILL_PARENT);
+            LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT);
 
             TextView textView = new TextView(activity);
             textView.setPadding(5, 0, 5, 0);
             textView.setText(updateInfo.getDescription());
-            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP,18f);
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f);
             textView.setTextColor(Color.WHITE);
 
-            CheckBox checkBox =new CheckBox(activity);
+            CheckBox checkBox = new CheckBox(activity);
             checkBox.setText("不再提醒");
-            checkBox.setOnCheckedChangeListener(new CheckBox.OnCheckedChangeListener(){
-                public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+            checkBox.setOnCheckedChangeListener(new CheckBox.OnCheckedChangeListener() {
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     createUpdateRemind(isChecked, updateInfo.getVersionCode());
                 }
 
             });
 
-            linearLayout.addView(textView,param);
+            linearLayout.addView(textView, param);
             linearLayout.addView(checkBox);
 
             return linearLayout;
@@ -549,24 +551,25 @@ public class UpdateService extends Service{
 
         /**
          * "不再提醒"选中框关联数据库
+         *
          * @param noRemindChecked
          * @param noRemindVersionCode
          */
-        private void createUpdateRemind(boolean noRemindChecked,int noRemindVersionCode){
+        private void createUpdateRemind(boolean noRemindChecked, int noRemindVersionCode) {
             String remindKey = "NoRemindVersionCode";
             SQLiteDatabase remindDb = Env.dbHelper.getWritableDatabase();
-            try{
-                if(noRemindChecked){
+            try {
+                if (noRemindChecked) {
                     //选中不再提醒，此次更新版本不再提示更新
-                    remindDb.execSQL("insert into " + DBHelper.INFO_TABLE + "(name,value)" +
+                    remindDb.execSQL("insert into " + AlvinDBHelper.INFO_TABLE + "(name,value)" +
                             " values('" + remindKey + "'," + noRemindVersionCode + ")");
 
-                }else{
+                } else {
                     //取消选中
-                    remindDb.execSQL("delete from " + DBHelper.INFO_TABLE +" where name='" +
-                            remindKey + "' and value='" + noRemindVersionCode+"'");
+                    remindDb.execSQL("delete from " + AlvinDBHelper.INFO_TABLE + " where name='" +
+                            remindKey + "' and value='" + noRemindVersionCode + "'");
                 }
-            }catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -574,29 +577,30 @@ public class UpdateService extends Service{
 
     /**
      * 检查用户是否不再提醒
+     *
      * @return
      */
-    private static boolean isNoRemindVersion(int versionCode){
+    private static boolean isNoRemindVersion(int versionCode) {
         boolean isNoRemind = false;
         String remindKey = "NoRemindVersionCode";
         SQLiteDatabase remindDb = Env.dbHelper.getWritableDatabase();
-        try{
+        try {
             Cursor remindCursor = null;
-            remindCursor = remindDb.rawQuery("select * from " + DBHelper.INFO_TABLE +
+            remindCursor = remindDb.rawQuery("select * from " + AlvinDBHelper.INFO_TABLE +
                     " where name='" + remindKey + "' and value='" + versionCode + "'", null);
-            try{
-                if(remindCursor != null && remindCursor.getCount() > 0){
+            try {
+                if (remindCursor != null && remindCursor.getCount() > 0) {
                     isNoRemind = true;
-                }else{
+                } else {
                     isNoRemind = false;
                 }
-            }finally{
-                if(remindCursor != null){
+            } finally {
+                if (remindCursor != null) {
                     remindCursor.close();
                     remindCursor = null;
                 }
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return isNoRemind;

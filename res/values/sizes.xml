@@ -4,7 +4,6 @@
 
     <dimen name="navigation_bar_height">44dip</dimen>
     <dimen name="button_margin">10dip</dimen>
-    <dimen name="round_progress_bar_size">30dip</dimen>
     <dimen name="refresh_button_margin">14dip</dimen>
     <dimen name="banner_title_size">22sp</dimen>
     <dimen name="hit_text_size">12sp</dimen>

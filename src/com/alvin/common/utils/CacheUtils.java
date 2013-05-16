@@ -2,7 +2,7 @@ package com.alvin.common.utils;
 
 import com.alvin.api.config.Env;
 import com.alvin.api.model.Cache;
-import com.alvin.db.DBHelper;
+import com.alvin.db.AlvinDBHelper;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -124,7 +124,7 @@ public class CacheUtils {
     public synchronized static void clearAllCache(int cacheType) {
         //清除缓存数据
         SQLiteDatabase db = Env.dbHelper.getWritableDatabase();
-        db.delete(DBHelper.CACHE_TABLE, "status="+cacheType, null);
+        db.delete(AlvinDBHelper.CACHE_TABLE, "status="+cacheType, null);
 
         //清除临时缓存
         clearTempCache(cacheType);
@@ -200,7 +200,7 @@ public class CacheUtils {
             Cursor cur = null;
             try {
                 cur = db.rawQuery(
-                        "select * from " + DBHelper.CACHE_TABLE + " " +
+                        "select * from " + AlvinDBHelper.CACHE_TABLE + " " +
                         "where key = '" + key + "'", null);
                 if(cur != null && cur.getCount() > 0 && cur.moveToNext()) {
                     cache = new Cache();
@@ -217,9 +217,9 @@ public class CacheUtils {
             if(cache != null) {
                 dataValue.put("id", cache.getId());
                 String[] parms = new String[]{Long.toString(cache.getId())};
-                db.update(DBHelper.CACHE_TABLE, dataValue, "id=?", parms);
+                db.update(AlvinDBHelper.CACHE_TABLE, dataValue, "id=?", parms);
             } else {
-                db.insert(DBHelper.CACHE_TABLE, null, dataValue);
+                db.insert(AlvinDBHelper.CACHE_TABLE, null, dataValue);
             }
         } catch (Exception e) {
             Log.e(TAG, "set cache data failed: " + key);
@@ -244,7 +244,7 @@ public class CacheUtils {
                 Cursor cur = null;
                 try {
                     cur = db.rawQuery(
-                            "select * from " + DBHelper.CACHE_TABLE + " " +
+                            "select * from " + AlvinDBHelper.CACHE_TABLE + " " +
                             "where key = '" + key + "'", null);
                     if(cur != null && cur.getCount() > 0 && cur.moveToNext()) {
                         try {
@@ -318,13 +318,13 @@ public class CacheUtils {
 
                 try {
                     cur = db.rawQuery(
-                            "select * from " + DBHelper.CACHE_TABLE + " " +
+                            "select * from " + AlvinDBHelper.CACHE_TABLE + " " +
                             "where expire<=" + System.currentTimeMillis() + "", null);
                     if(cur != null && cur.getCount() > 0 && cur.moveToNext()) {
                         cache = new Cache();
                         cache.parse(cur);
                         if(cache.getFile().delete()) {
-                            db.delete(DBHelper.CACHE_TABLE, "id="+cache.getId(), null);
+                            db.delete(AlvinDBHelper.CACHE_TABLE, "id="+cache.getId(), null);
                         }
                     }
                 } catch(Exception e) {

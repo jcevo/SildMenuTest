@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- “登录”、“分享绑定”、“字体大小”、“2G/3G网络加载”、和“精品应用的textview -->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/textview_white_16sp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/margin10"
+    android:layout_marginRight="@dimen/margin10"
+    android:layout_marginTop="@dimen/margin10"
+    android:background="@drawable/setting_full_transparent_background"
+    android:gravity="left|center_vertical">
+
+</TextView>

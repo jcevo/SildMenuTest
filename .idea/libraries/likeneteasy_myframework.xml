@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="likeneteasy_myframework">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/bin/likeneteasy_myframework.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

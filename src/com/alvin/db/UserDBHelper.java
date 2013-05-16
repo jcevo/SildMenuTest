@@ -9,12 +9,12 @@ import android.database.sqlite.SQLiteDatabase;
 public class UserDBHelper {
     public static Cursor getUserByFlag(String flag) {
         SQLiteDatabase db = Env.dbHelper.getReadableDatabase();
-        return db.rawQuery("select * from "+DBHelper.USER_TABLE+" where auth_type = ?", new String[]{flag});
+        return db.rawQuery("select * from "+AlvinDBHelper.USER_TABLE+" where auth_type = ?", new String[]{flag});
     }
     
     public static Cursor getPassPortUser() {
         SQLiteDatabase db = Env.dbHelper.getReadableDatabase();
-        return db.rawQuery("select * from "+DBHelper.USER_TABLE+" where is_passport = 1", null);
+        return db.rawQuery("select * from "+AlvinDBHelper.USER_TABLE+" where is_passport = 1", null);
     }
     
     public static boolean existsUser(String flag) {
@@ -34,7 +34,7 @@ public class UserDBHelper {
         Cursor cursor = null;
         try {
             SQLiteDatabase db = Env.dbHelper.getReadableDatabase();
-            cursor = db.rawQuery("select * from "+DBHelper.USER_TABLE+" where auth_type = ? and token = ?", new String[]{authType, token});
+            cursor = db.rawQuery("select * from "+AlvinDBHelper.USER_TABLE+" where auth_type = ? and token = ?", new String[]{authType, token});
             result = cursor != null && cursor.moveToFirst();
         } finally {
             if (cursor != null) cursor.close();
@@ -45,7 +45,7 @@ public class UserDBHelper {
     //改方法仅测试时使用
     private static int deleteUserByUserType(String userType) {
         SQLiteDatabase db = Env.dbHelper.getWritableDatabase();
-        return db.delete(DBHelper.USER_TABLE, "auth_type = ?", new String[]{userType});
+        return db.delete(AlvinDBHelper.USER_TABLE, "auth_type = ?", new String[]{userType});
     }
     
     public static long persistUser(String oauthType, long oauthUserId, String token, String secret, String oauthNickname) {
@@ -58,10 +58,10 @@ public class UserDBHelper {
         values.put("oauth_nickname", oauthNickname);
         long result = 0;
         if (existsUser(oauthType)) {
-            result = db.update(DBHelper.USER_TABLE, values, "auth_type = ?", new String[]{oauthType});
+            result = db.update(AlvinDBHelper.USER_TABLE, values, "auth_type = ?", new String[]{oauthType});
         } else {
             values.put("time", System.currentTimeMillis());
-            result = db.insert(DBHelper.USER_TABLE, null, values);
+            result = db.insert(AlvinDBHelper.USER_TABLE, null, values);
         }
         return result;
     }
@@ -77,7 +77,7 @@ public class UserDBHelper {
                 values.put("local_user_id", cursor.getInt(cursor.getColumnIndex("id")));
                 values.put("authority_name", authorityName);
                 values.put("status", hasAuthority?1:0);
-                result = db.insert(DBHelper.USER_AUTHORITY_TABLE, null, values);
+                result = db.insert(AlvinDBHelper.USER_AUTHORITY_TABLE, null, values);
             }
         } finally {
             if (cursor != null) cursor.close();
@@ -90,7 +90,7 @@ public class UserDBHelper {
         SQLiteDatabase db = Env.dbHelper.getReadableDatabase();
         Cursor cursor = null;
         try {
-            String sql = "select ua.id from "+DBHelper.USER_AUTHORITY_TABLE+" ua, "+DBHelper.USER_TABLE
+            String sql = "select ua.id from "+AlvinDBHelper.USER_AUTHORITY_TABLE+" ua, "+AlvinDBHelper.USER_TABLE
                 +" u where u.auth_type = ? and u.id = ua.local_user_id and ua.authority_name = ?";
             cursor = db.rawQuery(sql, new String[]{authType, authorityName});
             result = cursor != null && cursor.moveToFirst();
@@ -105,7 +105,7 @@ public class UserDBHelper {
         SQLiteDatabase writeDB = Env.dbHelper.getWritableDatabase();
         Cursor cursor = null;
         try {
-            String sql = "select ua.id from "+DBHelper.USER_AUTHORITY_TABLE+" ua, "+DBHelper.USER_TABLE
+            String sql = "select ua.id from "+AlvinDBHelper.USER_AUTHORITY_TABLE+" ua, "+AlvinDBHelper.USER_TABLE
                 +" u where u.auth_type = ? and u.id = ua.local_user_id and ua.authority_name = ? and ua.status = 1";
             cursor = writeDB.rawQuery(sql, new String[]{authType, authorityName});
             result = cursor != null && cursor.moveToFirst();
@@ -129,7 +129,7 @@ public class UserDBHelper {
                 if (cursor != null && cursor.moveToFirst()) {
                     values.put("status", hasAuthority?1:0);
                     values.put("authority_name", authorityName);
-                    writeDB.update(DBHelper.USER_AUTHORITY_TABLE, values, "local_user_id = "+cursor.getInt(cursor.getColumnIndex("id"))+" and authority_name = ?", new String[] {authorityName});
+                    writeDB.update(AlvinDBHelper.USER_AUTHORITY_TABLE, values, "local_user_id = "+cursor.getInt(cursor.getColumnIndex("id"))+" and authority_name = ?", new String[] {authorityName});
                     result = true;
                 }
             } catch(Exception e) {
@@ -145,7 +145,7 @@ public class UserDBHelper {
     public static int updateUser(ContentValues values, String where, String[] whereArgs) {
         SQLiteDatabase writeDB = Env.dbHelper.getWritableDatabase();
         try {
-            return writeDB.update(DBHelper.USER_TABLE, values, "auth_type = ?", whereArgs);
+            return writeDB.update(AlvinDBHelper.USER_TABLE, values, "auth_type = ?", whereArgs);
         } catch(Exception e) {
             return 0;
         }

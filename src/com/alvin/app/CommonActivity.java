@@ -215,7 +215,7 @@ public class CommonActivity {
         }
 
         if(((ActivityInterface)parent).isRoot()) {
-            ((CommonApplication)parent.getApplication()).exit(parent);
+//            ((CommonApplication)parent.getApplication()).exit(parent);
         } else {
             ((ActivityInterface)parent).doSuperBackPressed();
         }

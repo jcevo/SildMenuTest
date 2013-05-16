@@ -13,7 +13,7 @@ public class DbHandle {
     public DbHandle(Context context, int version) {
         if (db != null && db.isOpen()) {
         } else {
-            DBHelper dbHelper = new DBHelper(context, version);
+            AlvinDBHelper dbHelper = new AlvinDBHelper(context, version);
             db = dbHelper.getWritableDatabase();
         }
     }

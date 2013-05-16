@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 设置页面按钮按默认和按下时的背景图片 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 定义按钮按下时的图片 -->
+    <item android:drawable="@drawable/setting_button_click_background" android:state_pressed="true"/>
+    <!-- 定义按钮默认的图片 -->
+    <item android:drawable="@drawable/setting_button_default_background"/>
+
+</selector>

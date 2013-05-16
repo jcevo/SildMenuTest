@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- “文章搜索”、“离线下载”、“定义栏目”、“清除缓存”和“关于我们”用的textview -->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/textview_white_16sp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/margin10"
+    android:layout_marginRight="@dimen/margin10"
+    android:layout_marginTop="@dimen/margin10"
+    android:background="@drawable/setting_default_press_background"
+    android:gravity="center">
+</TextView>

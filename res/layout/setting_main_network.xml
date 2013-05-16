@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 设置页面中”加载2G/3G网络“布局 -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/margin10"
+    android:layout_marginRight="@dimen/margin10"
+    android:layout_marginTop="@dimen/margin10"
+    android:background="@drawable/setting_switch_background"
+    android:gravity="center" >
+
+    <FrameLayout
+        android:id="@+id/setting_text_choice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin5"
+        android:layout_marginRight="@dimen/margin5"
+        android:gravity="center" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/setting_non_image"
+                style="@style/textview_white_16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.3"
+                android:text="@string/setting_non_image" />
+
+            <TextView
+                android:id="@+id/setting_small_image"
+                style="@style/textview_white_16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.3"
+                android:text="@string/setting_small_image" />
+
+            <TextView
+                android:id="@+id/setting_big_image"
+                style="@style/textview_white_16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.3"
+                android:text="@string/setting_big_image" />
+        </LinearLayout>
+
+        <ImageView
+            android:contentDescription="@null"
+            android:id="@+id/setting_image_choice_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/setting_switch_button_transparent_background" />
+    </FrameLayout>
+
+</LinearLayout>

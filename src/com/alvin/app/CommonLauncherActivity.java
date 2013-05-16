@@ -4,7 +4,7 @@ import com.alvin.api.config.Env;
 import com.alvin.api.model.Info;
 import com.alvin.common.utils.CountUtils;
 import com.alvin.common.utils.NetworkUtils;
-import com.alvin.db.DBHelper;
+import com.alvin.db.AlvinDBHelper;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -30,7 +30,7 @@ public class CommonLauncherActivity extends CommonActivity.BaseActivity {
                 try {
                     Info info = new Info();
                     cur = db.rawQuery(
-                            "select * from " + DBHelper.INFO_TABLE + " " +
+                            "select * from " + AlvinDBHelper.INFO_TABLE + " " +
                             "where name = '" + Info.NAME_VERSION_CODE + "'", null);
                     if(cur.getCount() > 0 && cur.moveToNext()) {
                         info.parse(cur);
@@ -49,7 +49,7 @@ public class CommonLauncherActivity extends CommonActivity.BaseActivity {
                             dataValue.put("value", Env.versionCode);
                             dataValue.put("time", System.currentTimeMillis());
                             String[] parms = new String[]{Long.toString(info.getId())};
-                            db.update(DBHelper.INFO_TABLE, dataValue, "id=?", parms);
+                            db.update(AlvinDBHelper.INFO_TABLE, dataValue, "id=?", parms);
                         }
                     } else {    //新装
                         //发送设备信息
@@ -77,7 +77,7 @@ public class CommonLauncherActivity extends CommonActivity.BaseActivity {
                         dataValue.put("name", Info.NAME_VERSION_CODE);
                         dataValue.put("value", Env.versionCode);
                         dataValue.put("time", System.currentTimeMillis());
-                        db.insert(DBHelper.INFO_TABLE, null, dataValue);
+                        db.insert(AlvinDBHelper.INFO_TABLE, null, dataValue);
                     }
                 } catch(Exception e) {
                     e.printStackTrace();

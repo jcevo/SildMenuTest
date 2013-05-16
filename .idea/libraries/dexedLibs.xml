@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="dexedLibs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../LikeNetEasy_Myapp/bin/dexedLibs/annotations-c3fe8effc9bcc140ec3e1fc5a146ab02.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../LikeNetEasy_Myapp/bin/dexedLibs/android-support-v13-331d14b466c7e54c59d4b780845697d1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../LikeNetEasy_Myapp/bin/dexedLibs/commons-httpclient-3.1-920c28104b636a1907ec19f763d4cc7d.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../LikeNetEasy_Myapp/bin/dexedLibs/dom4j-1.6.1-47d456923e459e1087ccd60f9859439b.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../LikeNetEasy_Myapp/bin/dexedLibs/imofan-ext-9b97a239ebe0a09750f0dc5c7acde7bc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../LikeNetEasy_Myapp/bin/dexedLibs/libammsdk-3d23edb57a31bc33ee0ef7b493f5e46c.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../LikeNetEasy_Myapp/bin/dexedLibs/framework-730f6df69f5536a2eb87cb65cae33bba.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../LikeNetEasy_Myapp/bin/dexedLibs/QWeiboSDK-76b18f0b8cd6de3652389188867b66a7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../LikeNetEasy_Myapp/bin/dexedLibs/likeneteasy_myframework-5c2302ef594ede3c12f22cb3c5c84743.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../LikeNetEasy_Myapp/bin/dexedLibs/httpmime-4.1.1-f05ba8fdaa68e720971fbbc0c1c54e55.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../LikeNetEasy_Myapp/bin/dexedLibs/imofan-f6a655401ef3a6b8d782cdce5628b3e8.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

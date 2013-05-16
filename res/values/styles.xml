@@ -44,7 +44,6 @@
         <item name="android:textSize">14.0dip</item>
     </style>
     
-    
     <!-- 新浪微博 -->
       <style name="ContentOverlay" parent="android:style/Theme.Dialog">
             <item name="android:windowNoTitle">true</item>
@@ -54,4 +53,75 @@
         <item name="android:windowContentOverlay">@null</item> 
         <item name="android:backgroundDimEnabled">false</item>
       </style>
+      
+      
+      
+    <style name="NoTitleBar">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+    
+   <!-- TextView用到的白色－16sp字体 -->
+     <style name="textview_white_16sp">
+         <item name="android:gravity">center</item>
+         <item name="android:textSize">@dimen/textsize16</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    
+      <!-- TextView用到的黑色－16sp字体 -->
+     <style name="textview_black_16sp">
+         <item name="android:gravity">center</item>
+         <item name="android:textSize">@dimen/textsize16</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    
+     <!-- TextView用到的白色－14sp字体 -->
+     <style name="textview_white_14sp">
+         <item name="android:gravity">center</item>
+         <item name="android:textSize">@dimen/textsize14</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    
+     <!-- TextView用到的黑色－14sp字体 -->
+     <style name="textview_black_14sp">
+         <item name="android:gravity">center</item>
+         <item name="android:textSize">@dimen/textsize14</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    
+      <!-- TextView用到的红色－14sp字体 -->
+     <style name="textview_red_14sp">
+         <item name="android:gravity">center</item>
+         <item name="android:textSize">@dimen/textsize14</item>
+        <item name="android:textColor">@color/red</item>
+    </style>
+    
+     <!-- TextView用到的灰色－12sp字体 -->
+     <style name="textview_dimgrey_12sp">
+         <item name="android:gravity">center</item>
+         <item name="android:textSize">@dimen/textsize12</item>
+        <item name="android:textColor">@color/dimgrey</item>
+    </style>
+      
+     <!-- 文章页，弹出框动画 -->
+     <style name="ArticleModeOutAndIn">  
+        <item name="android:windowEnterAnimation">@anim/article_mode_scale_in</item>  
+        <item name="android:windowExitAnimation">@anim/article_mode_scale_out</item>  
+    </style>
+      
 </resources>

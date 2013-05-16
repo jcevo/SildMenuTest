@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 设置页面功能开关部分的布局 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <!-- 夜间模式 -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin10"
+        android:background="@drawable/setting_doubl_cutoff_rulee" >
+
+        <TextView
+            style="@style/textview_white_16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin10"
+            android:text="@string/setting_night_mode" />
+
+        <FrameLayout
+            android:id="@+id/setting_night_mode_choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin10"
+            android:layout_marginBottom="@dimen/margin10"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/margin10" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/setting_night_mode_on"
+                    style="@style/textview_white_16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/setting_switch_left_background"
+                    android:text="@string/setting_on" />
+
+                <TextView
+                    android:id="@+id/setting_night_mode_off"
+                    style="@style/textview_white_16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/setting_switch_right_background"
+                    android:text="@string/setting_off" />
+            </LinearLayout>
+
+            <ImageView
+                android:contentDescription="@null"
+                android:id="@+id/setting_night_mode_choice_background"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical"
+                android:src="@drawable/setting_switch_button_transparent_background" />
+        </FrameLayout>
+    </RelativeLayout>
+
+    <!-- 自动离线下载 -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/setting_single_cutoff_rulee" >
+
+        <TextView
+            style="@style/textview_white_16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin10"
+            android:text="@string/setting_auto_offline_download" />
+
+        <FrameLayout
+            android:id="@+id/setting_auto_offline_download_choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin10"
+            android:layout_marginBottom="@dimen/margin10"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/margin10" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/setting_auto_offline_download_on"
+                    style="@style/textview_white_16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/setting_switch_left_background"
+                    android:text="@string/setting_on" />
+
+                <TextView
+                    android:id="@+id/setting_auto_offline_download_off"
+                    style="@style/textview_white_16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/setting_switch_right_background"
+                    android:text="@string/setting_off" />
+            </LinearLayout>
+
+            <ImageView
+                android:contentDescription="@null"
+                android:id="@+id/setting_auto_offline_download_choice_background"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:src="@drawable/setting_switch_button_transparent_background" />
+        </FrameLayout>
+    </RelativeLayout>
+
+    <!-- 推送功能 -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/setting_single_cutoff_rulee" >
+
+        <TextView
+            style="@style/textview_white_16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin10"
+            android:text="@string/setting_push" />
+
+        <FrameLayout
+            android:id="@+id/setting_push_choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin10"
+            android:layout_marginBottom="@dimen/margin10"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/margin10" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/setting_push_on"
+                    style="@style/textview_white_16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/setting_switch_left_background"
+                    android:text="@string/setting_on" />
+
+                <TextView
+                    android:id="@+id/setting_push_off"
+                    style="@style/textview_white_16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/setting_switch_right_background"
+                    android:text="@string/setting_off" />
+            </LinearLayout>
+
+            <ImageView
+                android:contentDescription="@null"
+                android:id="@+id/setting_push_choice_background"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:src="@drawable/setting_switch_button_transparent_background" />
+        </FrameLayout>
+    </RelativeLayout>
+
+    <!-- 全屏浏览 -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/setting_single_cutoff_rulee" >
+
+        <TextView
+            style="@style/textview_white_16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin10"
+            android:text="@string/setting_full_screen" />
+
+        <FrameLayout
+            android:id="@+id/setting_full_screen_choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin10"
+            android:layout_marginBottom="@dimen/margin10"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/margin10" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/setting_full_screen_on"
+                    style="@style/textview_white_16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/setting_switch_left_background"
+                    android:text="@string/setting_on" />
+
+                <TextView
+                    android:id="@+id/setting_full_screen_off"
+                    style="@style/textview_white_16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/setting_switch_right_background"
+                    android:text="@string/setting_off" />
+            </LinearLayout>
+
+            <ImageView
+                android:contentDescription="@null"
+                android:id="@+id/setting_full_screen_choice_background"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:src="@drawable/setting_switch_button_transparent_background" />
+        </FrameLayout>
+    </RelativeLayout>
+
+    <!-- 手势功能 -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/setting_single_cutoff_rulee" >
+
+        <TextView
+            style="@style/textview_white_16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin10"
+            android:text="@string/setting_gusture" />
+
+        <FrameLayout
+            android:id="@+id/setting_gusture_choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin10"
+            android:layout_marginBottom="@dimen/margin10"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/margin10" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/setting_gusture_on"
+                    style="@style/textview_white_16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/setting_switch_left_background"
+                    android:text="@string/setting_on" />
+
+                <TextView
+                    android:id="@+id/setting_gusture_off"
+                    style="@style/textview_white_16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/setting_switch_right_background"
+                    android:text="@string/setting_off" />
+            </LinearLayout>
+
+            <ImageView
+                android:contentDescription="@null"
+                android:id="@+id/setting_gusture_choice_background"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:src="@drawable/setting_switch_button_transparent_background" />
+        </FrameLayout>
+    </RelativeLayout>
+
+</LinearLayout>

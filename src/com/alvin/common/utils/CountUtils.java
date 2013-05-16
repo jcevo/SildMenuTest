@@ -1,7 +1,7 @@
 package com.alvin.common.utils;
 
 import com.alvin.api.config.Env;
-import com.alvin.db.DBHelper;
+import com.alvin.db.AlvinDBHelper;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -70,7 +70,7 @@ public class CountUtils {
                     .append(eventJson);
             ContentValues data = new ContentValues();
             data.put("event", event.toString());
-            db.insert(DBHelper.USER_ACTIVITY_TABLE, null, data);
+            db.insert(AlvinDBHelper.USER_ACTIVITY_TABLE, null, data);
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -106,7 +106,7 @@ public class CountUtils {
                 Cursor cur = null;
                 try {
                     //更新安装数据
-                    cur = db.rawQuery("select * from " + DBHelper.USER_ACTIVITY_TABLE, null);
+                    cur = db.rawQuery("select * from " + AlvinDBHelper.USER_ACTIVITY_TABLE, null);
                     int count = cur.getCount();
                     if(count > 0) {
                         String url = INTERFACE_MOSS_RECEIVER;
@@ -161,7 +161,7 @@ public class CountUtils {
                                     + "&clienttime=" + Long.toString(clientTime)
                                     + "&json=" + eventJson.toString());
                             for(int id : idList) {
-                                db.delete(DBHelper.USER_ACTIVITY_TABLE,
+                                db.delete(AlvinDBHelper.USER_ACTIVITY_TABLE,
                                         "id=?", new String[]{Integer.toString(id)});
                             }
                         } else {

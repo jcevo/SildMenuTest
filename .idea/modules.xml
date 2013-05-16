@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/LikeNetEasy_MyFramework.iml" filepath="$PROJECT_DIR$/LikeNetEasy_MyFramework.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../LikeNetEasy_Myapp/LikeNetEasy_Myapp.iml" filepath="$PROJECT_DIR$/../LikeNetEasy_Myapp/LikeNetEasy_Myapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Umeng Analytics Android SDK V3.1.1/UMengSDKDemo/UMengSDKDemo.iml" filepath="$PROJECT_DIR$/Umeng Analytics Android SDK V3.1.1/UMengSDKDemo/UMengSDKDemo.iml" />
+    </modules>
+  </component>
+</project>
+

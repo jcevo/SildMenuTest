@@ -2,59 +2,50 @@ package com.alvin.api.model;
 
 import android.database.Cursor;
 
-import java.util.Date;
-
 /**
  * 用户信息
  */
 public class Account {
-    private Long id;
-    private String username;
-    private String password;
-    private Long passportId;
-    private String commonSessionId;
-    private String personalBrief;
-    private String token;
-    private String secret;
-    private String authType;
-    private Long oauthUserId;
-    private boolean isPassport;
-    private String oauthNickname;
-    private long time;
+    private int type = 0 ;// 登陆类型
+    private String username = "";// 用户名
+    private String password = "";// 密码
+    private String sessionId = "";// sessionid
+    private String displayName = "";// 昵称
+    private String userId = "";// 用户id
+    private String photoUrl = "";// 用户头像
+    private String description = "";// 个人简介
+    private long loginTime = -1;//登陆时间
+    private int defaults = 0;//
 
-    public final static String AUTH_TYPE_PASSPORT = "passport";
-    public final static String AUTH_TYPE_SINA = "sina";
-    public final static String AUTH_TYPE_TENCENT = "tencent";
-
-    public static Account parse(Cursor cursor) {
-        Account account = new Account();
-        account.setId(cursor.getLong(cursor.getColumnIndex("id")));
-        account.setUsername(cursor.getString(cursor.getColumnIndex("username")));
-        account.setPassword(cursor.getString(cursor.getColumnIndex("password")));
-        account.setPassportId(cursor.getLong(cursor.getColumnIndex("passport_id")));
-        account.setCommonSessionId(cursor.getString(cursor.getColumnIndex("session_id")));
-        account.setPersonalBrief(cursor.getString(cursor.getColumnIndex("personal_brief")));
-        account.setToken(cursor.getString(cursor.getColumnIndex("token")));
-        account.setSecret(cursor.getString(cursor.getColumnIndex("secret")));
-        account.setAuthType(cursor.getString(cursor.getColumnIndex("auth_type")));
-        account.setOauthUserId(cursor.getLong(cursor.getColumnIndex("oauth_user_id")));
-        account.setOauthNickname(cursor.getString(cursor.getColumnIndex("oauth_nickname")));
-        account.setTime(cursor.getLong(cursor.getColumnIndex("time")));
-        if(cursor.getInt(cursor.getColumnIndex("is_passport"))==1){
-            account.setPassport(true);
-        }else{
-            account.setPassport(false);
-        }
-
-        return account;
+    public int getType() {
+        return type;
     }
 
-    public Long getId() {
-        return id;
+    public void setType(int type) {
+        this.type = type;
+    }
+    public String getPhotoUrl() {
+        return photoUrl;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {
@@ -73,82 +64,36 @@ public class Account {
         this.password = password;
     }
 
-    public Long getPassportId() {
-        return passportId;
+    public String getDisplayName() {
+        return displayName;
     }
 
-    public void setPassportId(Long passportId) {
-        this.passportId = passportId;
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
-    public String getCommonSessionId() {
-        return commonSessionId;
+    public String getSessionId() {
+        return sessionId;
     }
 
-    public void setCommonSessionId(String commonSessionId) {
-        this.commonSessionId = commonSessionId;
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
     }
 
-    public String getToken() {
-        return token;
+    public int getDefaults() {
+        return defaults;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setDefaults(int defaults) {
+        this.defaults = defaults;
     }
 
-    public String getAuthType() {
-        return authType;
+    public long getLoginTime() {
+        return loginTime;
     }
 
-    public void setAuthType(String authType) {
-        this.authType = authType;
+    public void setLoginTime(long loginTime) {
+        this.loginTime = loginTime;
     }
 
-    public String getSecret() {
-        return secret;
-    }
-
-    public void setSecret(String secret) {
-        this.secret = secret;
-    }
-
-    public Long getOauthUserId() {
-        return oauthUserId;
-    }
-
-    public void setOauthUserId(Long oauthUserId) {
-        this.oauthUserId = oauthUserId;
-    }
-
-    public long getTime() {
-        return time;
-    }
-
-    public void setTime(long time) {
-        this.time = time;
-    }
-    public String getPersonalBrief() {
-        return personalBrief;
-    }
-
-    public void setPersonalBrief(String personalBrief) {
-        this.personalBrief = personalBrief;
-    }
-
-    public boolean isPassport() {
-        return isPassport;
-    }
-
-    public void setPassport(boolean passport) {
-        isPassport = passport;
-    }
-
-    public String getOauthNickname() {
-        return oauthNickname;
-    }
-
-    public void setOauthNickname(String oauthNickname) {
-        this.oauthNickname = oauthNickname;
-    }
 }

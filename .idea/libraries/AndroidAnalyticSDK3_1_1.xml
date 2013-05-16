@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="AndroidAnalyticSDK3.1.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Umeng Analytics Android SDK V3.1.1/AndroidAnalyticSDK3.1.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

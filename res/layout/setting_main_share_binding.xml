@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 设置页面中”分享绑定“布局 -->
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <!-- 分享绑定 -->
+
+    <include
+        android:id="@+id/setting_share_binding"
+        layout="@layout/setting_main_textview_transparent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin10"
+        android:layout_marginRight="@dimen/margin10"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/margin10" >
+
+        <LinearLayout
+            android:id="@+id/setting_login_tencent_qq"
+            android:layout_weight="0.5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/setting_default_press_background"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/margin10" >
+
+            <ImageView
+                android:contentDescription="@null"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/margin10"
+                android:src="@drawable/setting_tencent_qq" />
+
+            <TextView
+                style="@style/textview_white_16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/setting_tencent_qq" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/blank"
+            android:layout_width="@dimen/margin10"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:id="@+id/setting_login_sina_wibo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:background="@drawable/setting_default_press_background"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:contentDescription="@null"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/margin10"
+                android:src="@drawable/setting_sina_weibo" />
+
+            <TextView
+                style="@style/textview_white_16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/setting_sina_weibo" />
+        </LinearLayout>
+    </LinearLayout>
+
+</merge>

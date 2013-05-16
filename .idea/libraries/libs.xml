@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="libs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/framework.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/imofan.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/libammsdk.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/dom4j-1.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/QWeiboSDK.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/httpmime-4.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/imofan-ext.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/android-support-v13.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/commons-httpclient-3.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

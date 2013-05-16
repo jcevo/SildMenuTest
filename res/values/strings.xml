@@ -3,6 +3,42 @@
 
     <string name="hello">Hello World!</string>
     <string name="app_name">Alvin_common</string>
+    <string name="app_exit">再按一次退出</string>
+    <string name="setting_login">登录</string>
+    <string name="setting_login_pconline">登录太平洋通行证</string>
+    <string name="setting_share_binding">分享绑定</string>
+    <string name="setting_tencent_qq">QQ账号</string>
+    <string name="setting_sina_weibo">新浪微博账号</string>
+    <string name="setting_text_size">字体大小</string>
+    <string name="setting_network">2G/3G网络加载</string>
+    <string name="setting_night_mode">夜间模式</string>
+    <string name="setting_auto_offline_download">自动离线下载</string>
+    <string name="setting_push">推送功能</string>
+    <string name="setting_full_screen">全屏浏览</string>
+    <string name="setting_gusture">手势功能</string>
+    <string name="setting_on">开启</string>
+    <string name="setting_off">关闭</string>
+    <string name="setting_define_column">定义栏目</string>
+    <string name="setting_clean_cache">清楚缓存</string>
+    <string name="setting_non_image">无图</string>
+    <string name="setting_small_image">小图</string>
+    <string name="setting_big_image">大图</string>
+    <string name="setting_middle">中</string>
+    <string name="setting_big">大</string>
+    <string name="setting_small">小</string>
+    <string name="setting_article_search">文章搜索</string>
+    <string name="setting_offline_download">离线下载</string>
+    <string name="setting_about_us">关于我们</string>
+    <string name="setting_evaluate">给个评价</string>
+    <string name="setting_quality_app">精品应用</string>
+    <string name="feature">专栏</string>
+    
+    
+    <string name="setting_app_ff">锋锋网</string>
+    <string name="setting_app_zaker">ZAKER</string>
+    <string name="setting_app_gq">搞趣</string>
+    <string name="setting_app_tbt">同步推</string>
+    <string name="setting_click_more">点击查看更多</string>
 
     <!-- 菜单项文案 -->
     <string name="menu_0">收藏夹</string>

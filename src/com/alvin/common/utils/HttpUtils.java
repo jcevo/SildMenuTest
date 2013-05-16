@@ -1,6 +1,5 @@
 package com.alvin.common.utils;
 
-import com.alvin.activity.service.PassportService;
 import com.alvin.api.config.Env;
 import com.alvin.api.model.Cache;
 
@@ -521,15 +520,7 @@ public class HttpUtils {
         return invokeWithCache(urlStr, urlStr, storeType, expire, refresh);
     }
 
-    //需要登录太平洋会员才可访问的网络接口或页面
-    public static HttpDownloadItem secureInvokeWithCache(
-            String urlStr, int storeType, int expire, boolean refresh) throws Exception {
-        if(PassportService.authenticate()) {
-            return invokeWithCache(urlStr, storeType, expire, refresh);
-        }
-
-        return null;
-    }
+   
 
     public static InputStream delayInvokeWithAsset(Context context, String url,
             int storeType, int expire, boolean refresh) throws Exception {
@@ -681,14 +672,7 @@ public class HttpUtils {
 		return httpMessage;
     }
 
-    public static HttpMessage secureInvoke(HttpMessage httpMessage) throws Exception {
-        if(PassportService.authenticate()) {
-            return invoke(httpMessage);
-        }
-
-        return null;
-    }
-    
+   
     //下载资源封装类
     public static class HttpDownloadItem {
         private int type;                   //文件输入流类型

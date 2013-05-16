@@ -1,23 +1,23 @@
 package com.alvin.app;
 
+import cn.com.pcgroup.android.framework.db.DBHelper;
+
 import com.alvin.api.config.Env;
+import com.alvin.common.R;
 import com.alvin.common.utils.CacheUtils;
-import com.alvin.common.utils.CountUtils;
-import com.alvin.db.DBHelper;
 import com.alvin.exception.CrashHandler;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Application;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.telephony.TelephonyManager;
+import android.util.DisplayMetrics;
 import android.util.Log;
 
 import java.io.File;
+import java.lang.reflect.Field;
 
 /**
  * 客户端共用主程序
@@ -60,6 +60,21 @@ public class CommonApplication extends Application {
             Log.e(TAG, "Get app info error");
             e.printStackTrace();
         }
+        
+        //获取屏幕分辨率和密度
+        DisplayMetrics metrics = this.getApplicationContext().getResources().getDisplayMetrics();
+        Env.screenWidth = metrics.widthPixels;
+        Env.screenHeight = metrics.heightPixels;
+        Env.density = metrics.density;
+        
+        //获取状态栏的高度
+        Env.statusBarHeight = getStatusBarHeight();
+        
+        //获取标题栏高度
+        Env.titleBarHeight = getTitleBarHeight();
+        
+        //获取底部tab高度
+        Env.tabHeight = getTabHeight();
 
         //创建或更新数据库
         Env.dbHelper = new DBHelper(this.getApplicationContext(), databaseVersion,
@@ -150,36 +165,7 @@ public class CommonApplication extends Application {
     public File getExternalFileDirectory() {
         return Env.externalFileDir;
     }
-
-    public void exit(final Activity activity) {
-        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(activity);
-        alertBuilder.setTitle("退出应用？")
-                .setMessage("确定退出应用？")
-                .setPositiveButton("退出",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                CacheUtils.clearTempCache();
-                                Env.dbHelper.close();
-                                CountUtils.updateUseTime(true);
-//                                System.out.println("##### exit - " + activity);
-
-                                // 退出应用
-//                                activity.onBackPressed();
-//                                System.exit(0);
-//                                activity.finish();
-                                android.os.Process.killProcess(android.os.Process.myPid());
-                            }
-                        }
-                ).setNegativeButton("取消",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        }
-                );
-        alertBuilder.create().show();
-    }
-
+    
     Initializer getInitializer() {
         return initializer;
     }
@@ -194,5 +180,52 @@ public class CommonApplication extends Application {
 
     public void setBranch(boolean branch) {
         isBranch = branch;
+    }
+    
+    /**
+     * 获取状态栏高度/像素
+     * @return
+     */
+    private int getStatusBarHeight(){
+        Class<?> c = null;
+        Object obj = null;
+        Field field = null;
+        int x = 0, statusBarHeight = 0;
+        try {
+            c = Class.forName("com.android.internal.R$dimen");
+            obj = c.newInstance();
+            field = c.getField("status_bar_height");
+            x = Integer.parseInt(field.get(obj).toString());
+            statusBarHeight = getResources().getDimensionPixelSize(x);
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+        return statusBarHeight;
+    }
+    
+    /**
+     * 获取标题栏的高度（实质上获取的是状态栏背景图片的高度）/像素
+     * @return
+     */
+    private int getTitleBarHeight(){
+        return this.getResources().getDrawable(R.drawable.app_top_banner_layout_background).getIntrinsicHeight();
+    }
+    
+    /**
+     * 获取底部Tab高度（实质上获取的是图片的高度）/像素
+     * @return
+     */
+    private int getTabHeight(){
+        return this.getResources().getDrawable(R.drawable.app_information_tab_default).getIntrinsicHeight();
+    }
+    
+    private String schema; //协议头
+    private String sdName;//文件在sd卡上存放目录名字
+    public void setSdName(String sdName) {
+        this.sdName = sdName;
+    }
+    
+    public void setSchema(String schema) {
+        this.schema = schema;
     }
 }
